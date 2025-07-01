@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+scikit-learn
+xgboost # Or other ML libraries
+# tensorflow # Or pytorch if using deep learning
+pandas
+numpy
+pydantic
