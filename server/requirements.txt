@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg2-binary # Or other DB driver
+python-dotenv
+requests
+# Add specific libraries for data processing, e.g., pandas, numpy if used in backend
