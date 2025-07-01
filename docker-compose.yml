@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  client:
+    build: ./client
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+    environment:
+      - REACT_APP_API_BASE_URL=http://localhost:8000 # Adjust if server port changes
+
+  server:
+    build: ./server
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - ml_service
+    env_file:
+      - .env
+
+  ml_service:
+    build: ./ml_service
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+
+  db:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: diabetes_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+
+volumes:
+  postgres_data: {}
